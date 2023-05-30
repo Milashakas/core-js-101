@@ -37,7 +37,7 @@ function findElement(arr, value) {
  */
 function generateOdds(len) {
   let arr = new Array(len);
-  return arr.fill(undefined).map((item, index) => index + index + 1)
+  return arr.fill(undefined).map((item, index) => ((index + index) + 1))
 }
 
 
