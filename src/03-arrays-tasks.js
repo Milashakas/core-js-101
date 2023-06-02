@@ -543,8 +543,9 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  const set = new Set(arr);
+  return Array.from(set);
 }
 
 /**
@@ -612,8 +613,16 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  let res;
+  if (indexes.length === 1) {
+    res = arr[indexes[0]];
+  } else if (indexes.length === 2) {
+    res = arr[indexes[0]][indexes[1]];
+  } else {
+    res = arr[indexes[0]][indexes[1]][indexes[2]];
+  }
+  return res;
 }
 
 
@@ -635,10 +644,20 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  let result;
+  if (arr.length % 2 === 0) {
+    const firstPart = arr.splice((arr.length / 2), arr.length - 1);
+    const newArr = firstPart.concat(arr);
+    result = newArr;
+  } else {
+    const firstPart = arr.splice((Math.floor(arr.length / 2)), arr.length - 1);
+    firstPart.reverse();
+    const newArr = firstPart.concat(arr);
+    result = newArr;
+  }
+  return result;
 }
-
 
 module.exports = {
   findElement,
