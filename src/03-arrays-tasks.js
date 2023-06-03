@@ -309,8 +309,13 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const res = arr.map((item, index) => {
+    const array = new Array(index + 1);
+    array.fill(item);
+    return array;
+  });
+  return [].concat(...res);
 }
 
 
@@ -382,8 +387,10 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const arr2 = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  arr.sort((a, b) => arr2.indexOf(a) - arr2.indexOf(b));
+  return arr;
 }
 
 /**
@@ -528,8 +535,15 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  let current = start;
+  const arr = new Array(((start * 1) + (end * 1)) - 1);
+  arr.fill('num');
+  return arr.map(() => {
+    const item = current;
+    current += 1;
+    return item;
+  });
 }
 
 /**
