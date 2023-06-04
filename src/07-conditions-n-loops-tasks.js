@@ -315,7 +315,6 @@ function isCreditCardNumber(ccn) {
       return res;
     });
   }
-  console.log(result);
   return (result.reduce((sum, item) => sum + Number(item), 0) % 10) === 0;
 }
 
