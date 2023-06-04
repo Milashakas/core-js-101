@@ -285,8 +285,38 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const arr = String(ccn).split('');
+  let result;
+  if (arr.length % 2 === 0) {
+    result = arr.map((item, index) => {
+      let res;
+      if (!index % 2 === 0 || index !== 0) {
+        res = Number(item) * 2;
+        if (res > 9) {
+          res -= 9;
+        }
+      } else {
+        res = Number(item);
+      }
+      return res;
+    });
+  } else {
+    result = arr.map((item, index) => {
+      let res;
+      if (index % 2 === 0 || index === 0) {
+        res = Number(item) * 2;
+        if (res > 9) {
+          res -= 9;
+        }
+      } else {
+        res = Number(item);
+      }
+      return res;
+    });
+  }
+  console.log(result);
+  return (result.reduce((sum, item) => sum + Number(item), 0) % 10) === 0;
 }
 
 /**
