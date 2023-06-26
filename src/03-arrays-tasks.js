@@ -219,8 +219,8 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  return arr.join('\n');
 }
 
 /**
@@ -496,8 +496,10 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  const result = arr.sort((a, b) => a.country.localeCompare(b.country));
+  const res2 = result.sort((a, b) => (a.country === b.country ? a.city.localeCompare(b.city) : 0));
+  return res2;
 }
 
 /**
@@ -518,8 +520,12 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const arr = new Array(n);
+  arr.fill(new Array(n));
+  const res = arr.map((item) => item.fill(1));
+  const res2 = res.map((item) => item.map((it, index) => (index === (n - 1) ? 1 : 0)));
+  return res2;
 }
 
 /**
@@ -537,12 +543,14 @@ function getIdentityMatrix(/* n */) {
  */
 function getIntervalArray(start, end) {
   let current = start;
-  const arr = new Array(((start * 1) + (end * 1)) - 1);
+  let count = ((start - end) - 1);
+  count = count < 0 ? count * (-1) : count;
+  const arr = new Array(count);
   arr.fill('num');
   return arr.map(() => {
-    const item = current;
+    const res = current;
     current += 1;
-    return item;
+    return res;
   });
 }
 
