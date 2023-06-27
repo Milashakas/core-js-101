@@ -119,7 +119,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
   const skalar = (x1 * x2) + (y1 * y2);
   const first = Math.sqrt((x1 ** 2) + (y1 ** 2));
   const sec = Math.sqrt((x2 ** 2) + (y2 ** 2));
-  return skalar / (first * sec);
+  return Math.acos(skalar / (first * sec));
 }
 
 /**
