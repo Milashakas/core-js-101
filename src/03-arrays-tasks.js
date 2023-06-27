@@ -521,10 +521,15 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
+  let count = 0;
   const arr = new Array(n);
   arr.fill(new Array(n));
   const res = arr.map((item) => item.fill(1));
-  const res2 = res.map((item) => item.map((it, index) => (index === (n - 1) ? 1 : 0)));
+  const res2 = res.map((item) => {
+    const r = item.map((it, index) => (index === count ? 1 : 0));
+    count += 1;
+    return r;
+  });
   return res2;
 }
 
